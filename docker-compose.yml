@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  osm-updater:
+    build: .
+    container_name: osm-updater
+    volumes:
+      - /volume1/docker/osmmerge:/data
+      - /volume1/docker/osm-autoupdate/update_osm.sh:/scripts/update_osm.sh
+      - /volume1/docker/osm-autoupdate/crontab.txt:/etc/cron.d/osmcron
+    working_dir: /scripts
+    entrypoint: ["/bin/bash", "-c", "chmod +x /scripts/update_osm.sh && cron -f"]
+    restart: unless-stopped
+    networks:
+      - osm-network
+
+networks:
+  osm-network:
+    external: true
