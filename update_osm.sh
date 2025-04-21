@@ -3,7 +3,7 @@ set -e
 
 # tylko co 12 tygodni
 week_number=$(date +%V)
-if (( week_number % 8 != 0 )); then
+if (( week_number % 12 != 0 )); then
   echo "Tydzień $week_number — pomijam aktualizację."
   exit 0
 fi
