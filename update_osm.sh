@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# tylko co 8 tygodni
+# tylko co 12 tygodni
 week_number=$(date +%V)
 if (( week_number % 8 != 0 )); then
   echo "Tydzień $week_number — pomijam aktualizację."
